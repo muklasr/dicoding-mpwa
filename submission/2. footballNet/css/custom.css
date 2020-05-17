@@ -1,0 +1,23 @@
+.custom-img {
+    height: 200px;
+    padding: 8px;
+}
+
+.custom-img > img {
+    height: 100%;
+    width: auto !important;
+    margin: auto;
+}
+
+.head-img {
+    width: 100%;
+    position: fixed;
+}
+
+.navbar-fixed {
+    z-index: 998;
+}
+
+#body-content {
+    width:100%
+}
