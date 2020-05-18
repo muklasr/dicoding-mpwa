@@ -7,6 +7,8 @@
     <meta name="description" content="footballNet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/img/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/img/icons/icon-192x192.png">
     <meta name="theme-color" content="#42A5F5" />
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -26,9 +28,10 @@
         </nav>
     </div>
     <!-- Akhir Navigasi -->
-    <div class="container" id="body-content"></div>
+    <div id="body-content"></div>
     <script src="js/materialize.min.js"></script>
     <script src="js/nav.js"></script>
+    <script src="js/dom.js"></script>
     <script src="js/api.js"></script>
     <script src="js/idb.js"></script>
     <script src="js/db.js"></script>
@@ -111,9 +114,9 @@
                     userVisibleOnly: true,
                     applicationServerKey: urlBase64ToUint8Array("BGlPBO7VnWbivmhazy1Sz2rbIWc0efgk4vfyxxCyjJgIwd6QcUUJarSRziBWvWbkEbFz2O_PcWKzBcPnrTJfDMg")
                 }).then(function (subscribe) {
-                    // console.log('Berhasil melakukan subscribe dengan endpoint: ', subscribe.endpoint);
-                    // console.log('Berhasil melakukan subscribe dengan p256dh key: ', btoa(String.fromCharCode.apply(null, new Uint8Array(subscribe.getKey('p256dh')))));
-                    // console.log('Berhasil melakukan subscribe dengan auth key: ', btoa(String.fromCharCode.apply(null, new Uint8Array(subscribe.getKey('auth')))));
+                    console.log('Berhasil melakukan subscribe dengan endpoint: ', subscribe.endpoint);
+                    console.log('Berhasil melakukan subscribe dengan p256dh key: ', btoa(String.fromCharCode.apply(null, new Uint8Array(subscribe.getKey('p256dh')))));
+                    console.log('Berhasil melakukan subscribe dengan auth key: ', btoa(String.fromCharCode.apply(null, new Uint8Array(subscribe.getKey('auth')))));
                 }).catch(function (e) {
                     console.error('Tidak dapat melakukan subscribe ', e.message);
                 });
