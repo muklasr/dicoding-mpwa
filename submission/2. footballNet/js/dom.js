@@ -6,6 +6,7 @@ function imgError(image) {
 }
 
 function showCompetitionTable(group){
+    let competitionsHTML = '';
     competitionsHTML += `<div class="card">
                             <div class="card-content">
                                 <div class="card-title">
