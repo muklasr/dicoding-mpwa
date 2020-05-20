@@ -52,51 +52,7 @@ function getCompetitions() {
     .then(function (data) {
       var competitionsHTML = "";
       data.standings.forEach(function (group) {
-        competitionsHTML += `
-        <div class="card">
-        <div class="card-content">
-        <div class="card-title">
-          <span class="left">${group.group.replace("_", " ")}</span>
-          <span class="new badge left ${
-            group.type == "HOME"
-              ? "green"
-              : group.type == "AWAY"
-              ? "red"
-              : "blue"
-          }" data-badge-caption="${group.type}"></span>
-        </div>
-        <table>
-            <thead>
-                <th>#</th>
-                <th>Team</th>
-                <th>M</th>
-                <th>W</th>
-                <th>D</th>
-                <th>L</th>
-            </thead>
-            <tbody>        
-        `;
-
-        group.table.forEach(function (team) {
-          competitionsHTML += `
-          <tr>
-              <td>${team.position}</td>
-              <td>${team.team.name}</td>
-              <td>${team.playedGames}</td>
-              <td>${team.won}</td>
-              <td>${team.draw}</td>
-              <td>${team.lost}</td>
-          </tr>
-          `;
-        });
-
-        competitionsHTML += `
-        </tbody>
-        </table> 
-         
-        </div>
-        </div>
-        `;
+        competitionsHTML += showCompetitionTable(group);
       });
       // Sisipkan komponen card ke dalam elemen dengan id #content
       document.getElementById("competitions").innerHTML = competitionsHTML;
