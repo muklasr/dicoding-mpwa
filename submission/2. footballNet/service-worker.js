@@ -1,4 +1,4 @@
-const CACHE_NAME = "footballNet-v01";
+const CACHE_NAME = "footballNet-v1";
 var urlsToCache = [
   "/",
   "/manifest.json",
