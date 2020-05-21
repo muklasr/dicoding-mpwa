@@ -29,7 +29,7 @@
         </nav>
     </div>
     <!-- Akhir Navigasi -->
-    <div class="container" id="body-content">
+    <div id="body-content">
         <div class="row">
             <div class="col s12 m8 offset-m2" id="team">
                 <div class="progress">
@@ -73,12 +73,13 @@
         }
 
         function check(id){
-            let btnSave = document.getElementById("save");
-            let btnDelete = document.getElementById("unsave");
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("unsave");
 
-            var team = undefined;
+            let team = undefined;
             btnDelete.style.display = 'none';
             btnSave.style.display = 'block'
+
             getById(id).then(function (data) {
                 // Hide fab jika dimuat dari indexed db
                 btnDelete.style.display = 'block'
@@ -88,24 +89,26 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            let urlParams = new URLSearchParams(window.location.search);
-            let id = urlParams.get("id");
-            let btnSave = document.getElementById("save");
-            let btnDelete = document.getElementById("unsave");
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get("id");
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("unsave");
 
-            let item = getTeamById();
+            const item = getTeamById();
             check(id);
 
             btnSave.onclick = function () {
                 item.then(function (team) {
                     saveForLater(team);
                     check(id);
+                    M.toast({html: 'Saved!'})
                 });
             }
 
             btnDelete.onclick = function () {
                 deleteById(id);
-                check(id);
+                check(id);  
+                M.toast({html: 'Deleted!'})
             }
         });
     </script>
