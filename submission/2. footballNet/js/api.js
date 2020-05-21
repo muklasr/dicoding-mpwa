@@ -1,10 +1,12 @@
 const base_url = "https://api.football-data.org/";
 const api_token = "e00967e304454ba09f9c141b9af31476";
 const id_liga = "2001";
-const options = {
-  headers: {
-    "X-Auth-Token": api_token,
-  },
+const fetchApi = url => {    
+  return fetch(url, {
+    headers: {
+      'X-Auth-Token': api_token
+    }
+  });
 };
 // Blok kode yang akan di panggil jika fetch berhasil
 function status(response) {
@@ -34,7 +36,7 @@ function getCompetitions() {
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            var competitionsHTML = "";
+            let competitionsHTML = "";
             data.standings.forEach(function (group) {
               competitionsHTML += showCompetitionTable(group);
             });
@@ -46,11 +48,11 @@ function getCompetitions() {
       });
   }
 
-  fetch(`${base_url}v2/competitions/${id_liga}/standings`, options)
+  fetchApi(`${base_url}v2/competitions/${id_liga}/standings`)
     .then(status)
     .then(json)
     .then(function (data) {
-      var competitionsHTML = "";
+      let competitionsHTML = "";
       data.standings.forEach(function (group) {
         competitionsHTML += showCompetitionTable(group);
       });
@@ -70,7 +72,7 @@ function getTeams() {
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            var teamsHTML = "";
+            let teamsHTML = "";
             data.teams.forEach(function (team) {
               teamsHTML += showTeamItem(team);
             });
@@ -81,12 +83,12 @@ function getTeams() {
       });
   }
 
-  fetch(`${base_url}v2/competitions/${id_liga}/teams`, options)
+  fetchApi(`${base_url}v2/competitions/${id_liga}/teams`)
     .then(status)
     .then(json)
     .then(function (data) {
       // Objek/array JavaScript dari response.json() masuk lewat data.
-      var teamsHTML = "";
+      let teamsHTML = "";
       data.teams.forEach(function (team) {
         teamsHTML += showTeamItem(team);
       });
@@ -114,7 +116,7 @@ function getTeamById() {
       });
     }
 
-    fetch(`${base_url}v2/teams/${idParam}`, options)
+    fetchApi(`${base_url}v2/teams/${idParam}`)
       .then(status)
       .then(json)
       .then(function (data) {
@@ -128,7 +130,7 @@ function getTeamById() {
 
 function getSavedTeams() {
   getAll().then(function (teams) {
-    var teamsHTML = "";
+    let teamsHTML = "";
     if (teams.length > 0) {
       teams.forEach(function (team) {
         teamsHTML += showTeamItem(team);
