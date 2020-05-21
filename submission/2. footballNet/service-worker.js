@@ -1,5 +1,5 @@
-const CACHE_NAME = "footballNet-v1";
-var urlsToCache = [
+const CACHE_NAME = "footballNet-v0001";
+const urlsToCache = [
   "/",
   "/manifest.json",
   "/nav.html",
@@ -16,6 +16,7 @@ var urlsToCache = [
   "/js/idb.js",
   "/js/materialize.min.js",
   "/js/nav.js",
+  "/js/notification.js",
   "/img/background.jpg",
   "/img/na.png",
   "/img/icons/icon-72x72.png",
@@ -38,7 +39,7 @@ self.addEventListener("install", function (event) {
 
 //Menggunakan aset dari cache
 self.addEventListener("fetch", function (event) {
-  var base_url = "https://api.football-data.org/";
+  const base_url = "https://api.football-data.org/";
   if (event.request.url.indexOf(base_url) > -1) {
     event.respondWith(
       caches.open(CACHE_NAME).then(function (cache) {
@@ -77,13 +78,13 @@ self.addEventListener("activate", function (event) {
 
 //PUSH NOTIFICATION
 self.addEventListener('push', function(event) {
-  var body;
+  let body;
   if (event.data) {
     body = event.data.text();
   } else {
     body = 'Push message no payload';
   }
-  var options = {
+  const options = {
     body: body,
     icon: 'img/icons/icon-144x144.png',
     vibrate: [100, 50, 100],
