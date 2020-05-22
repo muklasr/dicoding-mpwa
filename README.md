@@ -9,6 +9,7 @@ Footballnet is a progressive web app to display a list of standings and teams of
 - [x] Save Favorite Teams
 - [x] Offline Capability
 - [x] Notification
+- [x] Add to Homescreen
 
 ### Tech
 - [x] <a href="https://materializecss.com">MaterializeCSS</a>
