@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>footballNet</title>
+    <meta name="description" content="footballNet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/img/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/img/icons/icon-192x192.png">
+    <meta name="theme-color" content="#42A5F5" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <div class="navbar-fixed">
+        <nav class="blue lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="" class="brand-logo" id="logo-container">footballNet</a>
+                <a href="./#teams" class="sidenav-trigger" data-target="nav-mobile">
+                    <i class="material-icons">arrow_back</i>
+                </a>
+                <ul class="topnav right hide-on-med-and-down"></ul>
+            </div>
+        </nav>
+    </div>
+    <!-- Akhir Navigasi -->
+    <div id="body-content">
+        <div class="row">
+            <div class="col s12 m8 offset-m2" id="team">
+                <div class="progress">
+                    <div class="indeterminate blue"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="save">
+            <i class="large material-icons">favorite_outline</i>
+        </a>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="unsave">
+            <i class="large material-icons">favorite</i>
+        </a>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        // REGISTER SERVICE WORKER
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then(function () {
+                        console.log("Pendaftaran ServiceWorker berhasil");
+                    })
+                    .catch(function () {
+                        console.log("Pendaftaran ServiceWorker gagal");
+                    });
+            });
+        } else {
+            console.log("ServiceWorker belum didukung browser ini.");
+        }
+
+        function check(id){
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("unsave");
+
+            let team = undefined;
+            btnDelete.style.display = 'none';
+            btnSave.style.display = 'block'
+
+            getById(id).then(function (data) {
+                // Hide fab jika dimuat dari indexed db
+                btnDelete.style.display = 'block'
+                btnSave.style.display = 'none';
+                getSavedTeamById();
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get("id");
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("unsave");
+
+            const item = getTeamById();
+            check(id);
+
+            btnSave.onclick = function () {
+                item.then(function (team) {
+                    saveForLater(team);
+                    check(id);
+                    M.toast({html: 'Saved!'})
+                });
+            }
+
+            btnDelete.onclick = function () {
+                deleteById(id);
+                check(id);  
+                M.toast({html: 'Deleted!'})
+            }
+        });
+    </script>
+</body>
+
+</html>
