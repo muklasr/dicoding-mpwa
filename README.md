@@ -23,8 +23,8 @@ Footballnet is a progressive web app to display a list of standings and teams of
   
 ### Screenshot
 <p align="center">
-<img src="https://i.ibb.co/kJZznHY/photo-2020-05-22-15-42-26.jpg" alt="photo-2020-05-22-15-42-26" width="100" title="Sidemenu" alt="Sidemenu">
-<img src="https://i.ibb.co/WDyg4j8/photo-2020-05-22-15-42-37.jpg" alt="photo-2020-05-22-15-42-37" width="100" title="Standings" alt="Standings">
-<img src="https://i.ibb.co/cCgfm0J/photo-2020-05-22-15-42-30.jpg" alt="photo-2020-05-22-15-42-30" width="100" title="Teams" alt="Teams">
-<img src="https://i.ibb.co/R3fSwVj/photo-2020-05-22-15-42-33.jpg" alt="photo-2020-05-22-15-42-33" width="100" title="Detail Team" alt="Detail Team">
+<img src="https://i.ibb.co/kJZznHY/photo-2020-05-22-15-42-26.jpg" alt="photo-2020-05-22-15-42-26" width="200" title="Sidemenu" alt="Sidemenu">
+<img src="https://i.ibb.co/WDyg4j8/photo-2020-05-22-15-42-37.jpg" alt="photo-2020-05-22-15-42-37" width="200" title="Standings" alt="Standings">
+<img src="https://i.ibb.co/cCgfm0J/photo-2020-05-22-15-42-30.jpg" alt="photo-2020-05-22-15-42-30" width="200" title="Teams" alt="Teams">
+<img src="https://i.ibb.co/R3fSwVj/photo-2020-05-22-15-42-33.jpg" alt="photo-2020-05-22-15-42-33" width="200" title="Detail Team" alt="Detail Team">
 </p>
